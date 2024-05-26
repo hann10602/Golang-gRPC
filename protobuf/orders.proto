@@ -4,6 +4,7 @@ option go_package = "github.com/sikozonpc/common/orders";
 
 service OrderService {
     rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+    rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {}
 }
 
 message Order {
@@ -14,13 +15,19 @@ message Order {
 }
 
 message CreateOrderRequest {
-    int32 CustomerID = 2;
-    int32 ProductID = 3;
-    int32 Quantity = 4;
+    int32 CustomerID = 1;
+    int32 ProductID = 2;
+    int32 Quantity = 3;
 }
 
 message CreateOrderResponse {
-    int32 CustomerID = 2;
-    int32 ProductID = 3;
-    int32 Quantity = 4;
+    string status = 1;
+}
+
+message GetOrderRequest {
+    int32 CustomerID = 1;
+}
+
+message GetOrderResponse {
+    repeated Order orders = 1;
 }
